@@ -20,6 +20,17 @@ const User = mongoose.model('User', {
       }
     }
   },
+  password: {
+    type: String,
+    required: true,
+    minlength: 7,
+    trim: true,
+    validate(value) {
+      if (value.ToLowerCase().includes('password')) {
+        throw new Error('Password cannot contain "password"')
+      }
+    }
+  },
   age: {
     type: Number,
     default: 0,
@@ -33,10 +44,13 @@ const User = mongoose.model('User', {
 
 const Task = mongoose.model('Task', {
   description: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   },
   completed: {
-    type: Boolean
+    type: Boolean,
+    default: false
   }
 })
 
@@ -54,7 +68,8 @@ const Task = mongoose.model('Task', {
 // const me = new User({
 //   name: '   Julien   ',
 //   email: ' MYEMAIL@GMAIL.COM',
-//   age: 28
+//   age: 28,
+//   password: 'phone098!
 // })
 
 // me.save().then(() => {
