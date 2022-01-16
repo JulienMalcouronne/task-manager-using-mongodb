@@ -18,6 +18,26 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
   const db = client.db(databaseName)
 
+  // DELETE
+
+  // Delete many
+  // db.collection('users').deleteMany({
+  //   age: 27
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
+
+  // Delete one
+
+  // db.collection('tasks').deleteOne({
+  //   description: "study Node.js"
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
   // SOME UPDATE EXEMPLE
 
   // update one could check update operators on MongoDB doc
@@ -47,17 +67,17 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
   // })
 
   //update many
-  db.collection('tasks').updateMany({
-    completed: false
-  }, {
-    $set: {
-      completed: true
-    }
-  }).then((result) => {
-    console.log(result.modifiedCount)
-  }).catch((error) => {
-    console.log(error)
-  })
+  // db.collection('tasks').updateMany({
+  //   completed: false
+  // }, {
+  //   $set: {
+  //     completed: true
+  //   }
+  // }).then((result) => {
+  //   console.log(result.modifiedCount)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
 
  // SOME READ EXAMPLE
 
