@@ -4,7 +4,7 @@
 // const MongoClient = mongodb.MongoClient
 // const ObjectId = mongod.ObjectId
 
-const { MongoClient, ObjectID } = require('mongodb')
+const { MongoClient, ObjectID, ObjectId } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
@@ -17,6 +17,47 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
   }
 
   const db = client.db(databaseName)
+
+  // SOME UPDATE EXEMPLE
+
+  // update one could check update operators on MongoDB doc
+  // db.collection('users').updateOne({
+  //   _id: new ObjectId("61e2c978a250f9939aaf6c5d")
+  // }, {
+  //   $set: {
+  //     name:'Mikeee'
+  //   }
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
+
+  // add one to a number
+  // db.collection('users').updateOne({
+  //   _id: new ObjectId("61e2c978a250f9939aaf6c5d")
+  // }, {
+  //   $inc: {
+  //     age: 1
+  //   }
+  // }).then((result) => {
+  //   console.log(result)
+  // }).catch((error) => {
+  //   console.log(error)
+  // })
+
+  //update many
+  db.collection('tasks').updateMany({
+    completed: false
+  }, {
+    $set: {
+      completed: true
+    }
+  }).then((result) => {
+    console.log(result.modifiedCount)
+  }).catch((error) => {
+    console.log(error)
+  })
 
  // SOME READ EXAMPLE
 
@@ -39,9 +80,9 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
   //   console.log(task)
   // })
 
-  db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
-    console.log(tasks)
-  })
+  // db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
+  //   console.log(tasks)
+  // })
 
   // SOME CREATE EXAMPLES
 
