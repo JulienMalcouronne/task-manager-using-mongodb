@@ -25,11 +25,14 @@ beforeEach(async () => {
 //   console.log('afterEach')
 // })
 test('Should signup a new user', async () => {
-    await request(app).post('/users').send({
+     const response = await request(app).post('/users').send({
         name: 'Andrew',
         email: 'andrew@example.com',
         password: 'MyPass777!'
     }).expect(201)
+    //assert that the database was changed correctly
+    const user = await User.findById(response.body.user._id)
+    expect(user).not.toBeNull()
 })
 
 test('Should login existing user', async () => {
